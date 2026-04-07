@@ -60,7 +60,34 @@ folder -->
                 </execution>
             </executions>
         </plugin>
-    </plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Main-Class>com.example.Main</Main-Class>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.12.1</version> <!-- Use latest version -->
+            </plugin>
+
+
+
+        </plugins>
 </build>
+    <distributionManagement>
+        <repository>
+            <id>local-repo</id>
+            <url>file:///C:/local-maven-exp2</url>
+        </repository>
+    </distributionManagement>
+
 
 </project>

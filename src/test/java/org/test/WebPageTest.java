@@ -6,14 +6,24 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import static org.testng.Assert.assertTrue;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
 class WebPageTest {
     private static WebDriver driver;
     @BeforeTest
-    public void openBrowser() throws InterruptedException {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        Thread.sleep(2000);
-        driver.get("https://cec-nbheemalli.github.io/lab_2/"); // "Note: You should use your GITHUB-URL here...!!!"
+    public void openBrowser() {
+        ChromeOptions options = new ChromeOptions();
+
+        options.addArguments("--headless=new");   // REQUIRED
+        options.addArguments("--no-sandbox");     // REQUIRED for Jenkins
+        options.addArguments("--disable-dev-shm-usage"); // REQUIRED for Linux
+        options.addArguments("--disable-gpu");
+
+        WebDriver driver = new ChromeDriver(options);
+
+        driver.get("https://www.google.com");
     }
     @Test
     public void titleValidationTest(){
@@ -27,4 +37,5 @@ class WebPageTest {
         Thread.sleep(1000);
         driver.quit();
     }
+
 }
